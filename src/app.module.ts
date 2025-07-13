@@ -4,6 +4,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configDB } from './config/configDB';
 import { ConfigModule } from '@nestjs/config';
+import { RoomsModule } from './modules/rooms/rooms.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot(configDB),
     ConfigModule.forRoot({
       isGlobal: true  
-    })
+    }),
+    RoomsModule
   ],
   controllers: [],
   providers: [],

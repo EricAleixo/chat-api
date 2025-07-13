@@ -12,34 +12,37 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @Roles(rolesUse.admin)
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
   @Get()
+  @Roles(rolesUse.admin)
   findAll() {
     return this.usersService.findAll();
   }
 
   @Get('profile')
-  @Roles(rolesUse.admin)
   seeProfile(@Req() request: any){
-    //Criar guard pra verificar o token
     return this.usersService.findOne(request.user.id);
   }
 
   @Get(':id')
+  @Roles(rolesUse.admin)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
 
 
   @Put(':id')
+  @Roles(rolesUse.admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
+  @Roles(rolesUse.admin)
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
