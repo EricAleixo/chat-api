@@ -1,3 +1,4 @@
+import { Room } from "src/modules/rooms/entities/room.entity";
 import { User } from "src/modules/users/entities/user.entity";
 import { DataSourceOptions } from "typeorm";
 
@@ -10,6 +11,7 @@ export const configDB: DataSourceOptions = {
     database: "chat_db",
     synchronize: true,
     entities: [
-        User
+        User,
+        Room
     ]
 }

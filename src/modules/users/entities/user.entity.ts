@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
+import { Room } from "../../rooms/entities/room.entity";
 
 export enum rolesUse{
     basic = "basic",
@@ -26,4 +27,9 @@ export class User {
     @Column("simple-array", {default: [rolesUse.basic]})
     role: rolesUse[];
 
+    @ManyToMany(() => Room, room => room.admins)
+    adminRooms: Room[]
+    
+    @ManyToMany(() => Room, room => room.users)
+    rooms: Room[];
 }
